@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setFilter } from '../redux/filterSlice';
 
@@ -11,8 +11,25 @@ const Filter = () => {
   };
 
   const handleSearch = () => {
-    dispatch(setFilter(query));  
+    if (query.trim() === '') {
+      
+      dispatch(setFilter(''));
+    } else {
+      dispatch(setFilter(query));  
+    }
   };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();  
+    }
+  };
+
+  useEffect(() => {
+    if (query.trim() === '') {
+      dispatch(setFilter(''));
+    }
+  }, [query, dispatch]);
 
   return (
     <div>
@@ -21,8 +38,9 @@ const Filter = () => {
         placeholder="Search contacts"
         value={query}
         onChange={handleChange}  
+        onKeyDown={handleKeyPress}  
       />
-      <button onClick={handleSearch}>Search</button> 
+      <button onClick={handleSearch}>Search</button>  {}
     </div>
   );
 };

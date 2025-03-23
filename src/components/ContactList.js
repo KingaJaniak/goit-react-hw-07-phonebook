@@ -5,22 +5,21 @@ import { fetchContactsAsync, removeContactAsync } from '../redux/contactsSlice';
 const ContactList = () => {
   const dispatch = useDispatch();
   const { items, status, error } = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);  // Pobieramy wartość filtra z Redux
+  const filter = useSelector(state => state.filter);  
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchContactsAsync());  // Ładujemy kontakty przy pierwszym renderze
+      dispatch(fetchContactsAsync());  
     }
   }, [status, dispatch]);
 
   const handleRemoveContact = (id) => {
-    dispatch(removeContactAsync(id));  // Usuwamy kontakt
+    dispatch(removeContactAsync(id));  
   };
 
-  // Filtrowanie kontaktów na podstawie wprowadzonego zapytania w Redux
   const filteredContacts = items.filter(contact => 
-    contact.name.toLowerCase().includes(filter.toLowerCase()) ||  // Filtruj po nazwie
-    contact.phone.includes(filter)  // Filtruj po numerze telefonu
+    contact.name.toLowerCase().includes(filter.toLowerCase()) ||  
+    contact.phone.includes(filter)  
   );
 
   if (status === 'loading') {
