@@ -5,21 +5,22 @@ import { fetchContactsAsync, removeContactAsync } from '../redux/contactsSlice';
 const ContactList = () => {
   const dispatch = useDispatch();
   const { items, status, error } = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);  
+  const filter = useSelector(state => state.filter);
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchContactsAsync());  
+      dispatch(fetchContactsAsync());
     }
   }, [status, dispatch]);
 
-  const handleRemoveContact = (id) => {
-    dispatch(removeContactAsync(id));  
+  const handleRemoveContact = id => {
+    dispatch(removeContactAsync(id));
   };
 
-  const filteredContacts = items.filter(contact => 
-    contact.name.toLowerCase().includes(filter.toLowerCase()) ||  
-    contact.phone.includes(filter)  
+  const filteredContacts = items.filter(
+    contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+      contact.phone.includes(filter)
   );
 
   if (status === 'loading') {
@@ -38,12 +39,14 @@ const ContactList = () => {
           filteredContacts.map(contact => (
             <li key={contact.id}>
               {contact.name} - {contact.phone}
-              <button onClick={() => handleRemoveContact(contact.id)}>Delete</button>
+              <button onClick={() => handleRemoveContact(contact.id)}>
+                Delete
+              </button>
             </li>
           ))
         ) : (
-          <li>No contacts found.</li>  
-)}
+          <li>No contacts found.</li>
+        )}
       </ul>
     </div>
   );

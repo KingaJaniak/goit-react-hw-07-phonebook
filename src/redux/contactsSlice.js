@@ -1,23 +1,29 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchContacts, addContactAPI, removeContactAPI } from '../api'; 
+import { fetchContacts, addContactAPI, removeContactAPI } from '../api';
 
+export const fetchContactsAsync = createAsyncThunk(
+  'contacts/fetchContacts',
+  async () => {
+    const response = await fetchContacts();
+    return response;
+  }
+);
 
-export const fetchContactsAsync = createAsyncThunk('contacts/fetchContacts', async () => {
-  const response = await fetchContacts();  
-  return response;
-});
+export const addContactAsync = createAsyncThunk(
+  'contacts/addContact',
+  async contact => {
+    const response = await addContactAPI(contact);
+    return response;
+  }
+);
 
-
-export const addContactAsync = createAsyncThunk('contacts/addContact', async (contact) => {
-  const response = await addContactAPI(contact);  
-  return response;
-});
-
-
-export const removeContactAsync = createAsyncThunk('contacts/removeContact', async (id) => {
-  const response = await removeContactAPI(id);  
-  return response;
-});
+export const removeContactAsync = createAsyncThunk(
+  'contacts/removeContact',
+  async id => {
+    const response = await removeContactAPI(id);
+    return response;
+  }
+);
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -27,9 +33,9 @@ const contactsSlice = createSlice({
     error: null,
   },
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(fetchContactsAsync.pending, (state) => {
+      .addCase(fetchContactsAsync.pending, state => {
         state.status = 'loading';
       })
       .addCase(fetchContactsAsync.fulfilled, (state, action) => {
@@ -44,7 +50,9 @@ const contactsSlice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(removeContactAsync.fulfilled, (state, action) => {
-        state.items = state.items.filter(contact => contact.id !== action.payload);
+        state.items = state.items.filter(
+          contact => contact.id !== action.payload
+        );
       });
   },
 });

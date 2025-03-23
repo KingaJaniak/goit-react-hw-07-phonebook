@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addContactAsync } from '../redux/contactsSlice';  
+import { addContactAsync } from '../redux/contactsSlice';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const name = e.target.elements.name.value;
     const number = e.target.elements.number.value;

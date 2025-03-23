@@ -3,25 +3,24 @@ import { useDispatch } from 'react-redux';
 import { setFilter } from '../redux/filterSlice';
 
 const Filter = () => {
-  const [query, setQuery] = useState('');  
+  const [query, setQuery] = useState('');
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
-    setQuery(e.target.value);  
+  const handleChange = e => {
+    setQuery(e.target.value);
   };
 
   const handleSearch = () => {
     if (query.trim() === '') {
-      
       dispatch(setFilter(''));
     } else {
-      dispatch(setFilter(query));  
+      dispatch(setFilter(query));
     }
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = e => {
     if (e.key === 'Enter') {
-      handleSearch();  
+      handleSearch();
     }
   };
 
@@ -37,10 +36,10 @@ const Filter = () => {
         type="text"
         placeholder="Search contacts"
         value={query}
-        onChange={handleChange}  
-        onKeyDown={handleKeyPress}  
+        onChange={handleChange}
+        onKeyDown={handleKeyPress}
       />
-      <button onClick={handleSearch}>Search</button>  {}
+      <button onClick={handleSearch}>Search</button> {}
     </div>
   );
 };
