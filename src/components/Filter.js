@@ -31,10 +31,10 @@ const Filter = () => {
   }, [query, dispatch]);
 
   return (
-    <div>
+    <div className="form-container">
       <input
         type="text"
-        placeholder="Search contacts"
+        placeholder="Search contacts" className="input-field"
         value={query}
         onChange={handleChange}
         onKeyDown={handleKeyPress}
