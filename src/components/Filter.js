@@ -39,7 +39,7 @@ const Filter = () => {
         onChange={handleChange}
         onKeyDown={handleKeyPress}
       />
-      <button onClick={handleSearch}>Search</button> {}
+      <button className="search-button" onClick={handleSearch}>Search</button> {}
     </div>
   );
 };

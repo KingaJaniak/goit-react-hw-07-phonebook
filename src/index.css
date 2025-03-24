@@ -36,9 +36,9 @@ code {
 }
 
 .submit-button {
-  padding: 10px;
-  margin: 10px;
-  background-color: #4caf50;
+  padding: 5px;
+  margin: 5px;
+  background-color: #569258;
   color: white;
   border: none;
   border-radius: 4px;
@@ -46,12 +46,25 @@ code {
 }
 
 .submit-button:hover {
-  background-color: #45a049;
+  background-color: #57c75d;
 }
 
 .submit-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+.search-button {
+  padding: 5px;
+  margin: 5px;
+  background-color: #4d99b9;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #4ed5e1;
 }
 
 .list-container {
@@ -72,12 +85,13 @@ code {
 }
 
 .remove-button {
-  background-color: #f44336;
+  background-color: #ed938c;
   color: white;
   border: none;
-  padding: 5px;
+  padding: 2px;
   border-radius: 4px;
   cursor: pointer;
+  margin:10px;
 }
 
 .remove-button:hover {
